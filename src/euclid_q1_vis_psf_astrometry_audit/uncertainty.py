@@ -6,7 +6,7 @@
   chi-square from the nonlinear least-squares solver
   (`check_fit_convergence`).
 
-Reported separately per CLAUDE_TASK.md's requirement to not conflate
+Reported separately per docs/VALIDATION_CONTRACT.md's requirement to not conflate
 observational uncertainty with numerical convergence uncertainty.
 """
 from __future__ import annotations
@@ -77,7 +77,7 @@ def check_fit_convergence(
 
     Raises ConvergenceError (not a silently-returned False) if the
     covariance matrix is non-finite or ill-conditioned beyond
-    `max_condition_number`, per the CLAUDE_TASK.md stop condition for failed
+    `max_condition_number`, per the docs/VALIDATION_CONTRACT.md stop condition for failed
     numerical convergence.
     """
     pcov = np.asarray(pcov, dtype=float)

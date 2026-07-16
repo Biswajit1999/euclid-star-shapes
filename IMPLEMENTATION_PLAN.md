@@ -177,12 +177,12 @@ Same command sequence as project 1; write `LOCAL_COMPLETION_REPORT.md`.
 - `astroquery.esa.euclid` unavailability means the fetch script depends on IRSA's
   mirror rather than the official ESA archive directly; if IRSA's Euclid mirror
   access changes, this is a real external dependency risk to note in limitations.
-- Per `CLAUDE_TASK.md` stop conditions: if synthetic injection-recovery fails, stop
+- Per `docs/VALIDATION_CONTRACT.md` stop conditions: if synthetic injection-recovery fails, stop
   and document rather than proceeding to real cutouts.
 
 ## 8. Non-negotiables carried forward
 
-No `git commit`/`push`/remote creation. No Claude/Anthropic/AI attribution.
+No `git commit`/`push`/remote creation.
 Biswajit Jana remains sole author in `CITATION.cff`. No fabricated data,
 benchmarks, or citation metadata. Real-data download requires explicit operator
 authorization in chat before execution, regardless of the (small, ~30MB) size.

@@ -1,6 +1,6 @@
 # Local Completion Report — Euclid Q1 VIS PSF and Astrometry Audit
 
-Author: Biswajit Jana. This report documents a local Claude Code implementation pass
+Author: Biswajit Jana. This report documents a local implementation pass
 (project 2 of the 30-project pack, `BUILD_FIRST` priority 9.5/10). No git operations
 were performed. Nothing has been published.
 
