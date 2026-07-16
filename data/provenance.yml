@@ -1,0 +1,19 @@
+project_title: "Euclid Q1 VIS PSF and Astrometry Audit"
+repository: "euclid-q1-vis-psf-astrometry-audit"
+author: "Biswajit Jana"
+data_mode: "real public Euclid Q1 VIS products"
+created_utc: "2026-07-13T09:46:17.590588+00:00"
+
+source_products: []
+# Each entry must contain:
+# product_id, source, source_url, retrieved_utc, sha256,
+# file_size_bytes, licence_or_terms, selection_reason
+
+derivation:
+  configuration_file: config/analysis.yml
+  configuration_sha256: TODO_AFTER_IMPLEMENTATION
+  software_commit: LOCAL_UNCOMMITTED
+  scripts: []
+
+assumptions: []
+warnings: []

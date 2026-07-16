@@ -1,0 +1,43 @@
+{
+  "title": "Euclid Q1 VIS PSF and Astrometry Audit",
+  "repo": "euclid-star-shapes",
+  "category": "Space-imaging instrumentation / data science",
+  "status": "BUILD_FIRST",
+  "priority": 9.5,
+  "question": "Do local point-source FWHM, ellipticity and Gaia-relative astrometric residuals vary across selected public Euclid Q1 VIS products?",
+  "gap": "A small external reproducibility audit; not a weak-lensing PSF solution or replacement for the official VIS pipeline.",
+  "dataMode": "real public Euclid Q1 VIS products",
+  "novelty": "A small external reproducibility audit; not a weak-lensing PSF solution or replacement for the official VIS pipeline.",
+  "figures": [
+    { "id": "fig01_vis_cutouts", "label": "VIS cutouts" },
+    { "id": "fig02_fwhm_ellipticity_distributions", "label": "FWHM/ellipticity distributions" },
+    { "id": "fig03_spatial_maps", "label": "Spatial maps" },
+    { "id": "fig04_gaia_residuals", "label": "Gaia residuals" },
+    { "id": "fig05_magnitude_trends", "label": "Magnitude trends" },
+    { "id": "fig06_injection_recovery", "label": "Injection recovery" }
+  ],
+  "validationContract": [
+    "synthetic star injection",
+    "Gaussian/Moffat comparison",
+    "bootstrap tile statistics",
+    "Gaia affine alignment",
+    "strict/permissive cuts"
+  ],
+  "methodology": "Source centroids are refined from catalog RA/Dec via 2-D Gaussian centroiding, then fit with both an elliptical Gaussian and an elliptical Moffat profile (scipy curve_fit); the model with lower reduced chi-square is reported. Centroids are cross-matched to Gaia DR3 within 0.5 arcsec and a 2-D affine transform is fit to the matches for astrometric residuals. FWHM/ellipticity are reported under strict and permissive point-source quality cuts and binned by VIS magnitude.",
+  "assumptions": [
+    "astroquery.esa.euclid is unavailable in the pinned astroquery version; real access goes through IRSA's public Euclid Q1 mirror instead of the official ESA archive directly.",
+    "Euclid cutout FITS extension layout is parsed defensively (PrimaryHDU or SCI/SCIENCE/DATA extension) since it was not verified against a live file before implementation; exposure_metadata records which layout was actually found.",
+    "FWHM is the geometric mean of major/minor-axis FWHMs; ellipticity is 1-minor/major, consistent with the synthetic injection convention."
+  ],
+  "limitations": [
+    "Small external reproducibility audit, not a weak-lensing PSF solution or replacement for the official VIS pipeline.",
+    "Only 465 sources were found in the first real tile queried; the deterministic real-data sample (~15 sources) is small by design, and per-bin sample sizes will likely fall below the configured minimum_sample_size=30 (flagged in results/warnings.json, not hidden).",
+    "\"Magnitude/colour trends\" is implemented as FWHM/ellipticity vs. VIS magnitude only; multi-band colour trends are out of scope for this first release.",
+    "reports/report.tex could not be compiled to PDF in this environment (no local LaTeX toolchain); only structural completeness was verified."
+  ],
+  "citation": {
+    "author": "Biswajit Jana",
+    "license": "BSD-3-Clause (original code); mission/archive products retain their original terms",
+    "repository": "https://github.com/Biswajit1999/euclid-star-shapes"
+  }
+}

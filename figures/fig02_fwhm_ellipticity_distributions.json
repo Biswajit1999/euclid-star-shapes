@@ -1,0 +1,9 @@
+{
+  "figure": "fig02_fwhm_ellipticity_distributions",
+  "data_kind": "real public Euclid Q1 VIS products",
+  "sample_size": 15,
+  "units": "pixels / dimensionless",
+  "git_commit": "LOCAL_UNCOMMITTED",
+  "config_sha256": "abbc982cf3357acbc4d77bffce07da2f643f453e8ea2fa156507f829c2955fdb",
+  "package_version": "0.1.0"
+}
