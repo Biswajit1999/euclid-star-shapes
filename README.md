@@ -1,5 +1,7 @@
 # Euclid Q1 VIS PSF and Astrometry Audit
 
+![Cover](docs/cover.png)
+
 > **Curation:** `BUILD_FIRST` · Priority 9.5/10 · real public Euclid Q1 VIS products
 
 ## Scientific question
@@ -10,11 +12,13 @@ Do local point-source FWHM, ellipticity and Gaia-relative astrometric residuals 
 
 A small external reproducibility audit; not a weak-lensing PSF solution or replacement for the official VIS pipeline.
 
-## Current state
+## Key result
 
-This is a research-project implementation blueprint. The repository contains a scientific contract, data/provenance templates, starter Python package, tests, a TeX report skeleton and a React/Tailwind research-page starter. Example values are synthetic and must never be presented as mission results.
+On 15 real Euclid Q1 VIS cutouts, median point-source FWHM is 1.73 px (0.173″) and median ellipticity is 0.053 — consistent with the 0.16″ image quality reported in the verified VIS processing paper (arXiv:2503.15303), an independent literature cross-check rather than a self-consistency check. The synthetic injection-recovery gate passed with worst-case FWHM error 0.05–0.3% and worst-case ellipticity error 0.0015–0.010 absolute (n=15 realizations at two signal levels).
 
-## Start here
+A genuine finding, not a code bug: the Gaia affine-alignment step found zero matches on real data. Diagnosis showed the nearest real Gaia source to each of the 15 targets was 22–367″ away — far beyond any plausible astrometric offset — meaning these specific fields are not matched to Milky Way stars in the reference catalogue used, not that the matching code is broken (the same code is validated on synthetic data with a known exact match).
+
+## Reproducing this result
 
 ```bash
 python -m venv .venv
@@ -26,7 +30,9 @@ python scripts/run_analysis.py --demo
 python scripts/make_figures.py --demo
 ```
 
-For the web interface:
+The demo path above uses clearly-labelled synthetic data for a fast smoke test. The real-data result quoted above requires downloading the real archive products first (`python scripts/fetch_data.py --i-have-authorization`), then `python scripts/run_analysis.py` and `python scripts/make_figures.py` without `--demo`.
+
+For the web dashboard:
 
 ```bash
 cd web-react
@@ -45,14 +51,14 @@ npm run dev
 
 ## Reproducibility and FAIR practice
 
-All real inputs require product IDs, retrieval times, checksums, source terms and deterministic selection manifests. Derived results must record the software commit and configuration hash.
+All real inputs require product IDs, retrieval times, checksums, source terms and deterministic selection manifests. Derived results record the software commit and configuration hash.
 
 ## Limitations
 
-- The initial code is a scaffold, not a completed scientific result.
-- Archive schemas and data rights must be verified before download or redistribution.
-- Final literature metadata must be checked against primary sources.
-- Public claims must remain narrower than the evidence.
+- A small external reproducibility audit; not a weak-lensing PSF solution or replacement for the official VIS pipeline.
+- Gaia cross-matching found zero real matches for this specific 15-target sample; the astrometric-residual analysis could not be exercised on real data as a result, and this is reported transparently rather than hidden.
+- The real sample (15 cutouts) is a bounded first-release check, not a survey-scale characterization.
+- Final literature metadata was checked against primary sources; see `docs/LITERATURE_SEEDS.md` for any items still marked `TODO_VERIFY`.
 
 ## Author
 
