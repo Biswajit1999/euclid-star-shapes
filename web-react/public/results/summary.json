@@ -1,0 +1,127 @@
+{
+  "project": "Euclid Q1 VIS PSF and Astrometry Audit",
+  "data_kind": "real public Euclid Q1 VIS products",
+  "metrics": [
+    {
+      "name": "median_fwhm",
+      "estimate": 1.7294531321738076,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "pixels",
+      "sample_size": 15
+    },
+    {
+      "name": "median_ellipticity",
+      "estimate": 0.053117925677571565,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "dimensionless",
+      "sample_size": 15
+    },
+    {
+      "name": "gaia_astrometric_rms_residual",
+      "estimate": NaN,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "arcsec",
+      "sample_size": 0
+    },
+    {
+      "name": "fwhm_median_strict_cut",
+      "estimate": 1.7834487136250294,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "pixels",
+      "sample_size": 3
+    },
+    {
+      "name": "ellipticity_median_strict_cut",
+      "estimate": 0.048939270364090404,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "dimensionless",
+      "sample_size": 3
+    },
+    {
+      "name": "fwhm_median_permissive_cut",
+      "estimate": 1.7294531321738076,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "pixels",
+      "sample_size": 15
+    },
+    {
+      "name": "ellipticity_median_permissive_cut",
+      "estimate": 0.053117925677571565,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "dimensionless",
+      "sample_size": 15
+    },
+    {
+      "name": "fwhm_by_magnitude_bin_0_[18,21)",
+      "estimate": 1.8001158813658567,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "pixels",
+      "sample_size": 5
+    },
+    {
+      "name": "fwhm_by_magnitude_bin_1_[21,22.6)",
+      "estimate": 1.7089106980875886,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "pixels",
+      "sample_size": 5
+    },
+    {
+      "name": "fwhm_by_magnitude_bin_2_[22.6,23.9)",
+      "estimate": 1.745844852624248,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "pixels",
+      "sample_size": 5
+    },
+    {
+      "name": "ellipticity_by_magnitude_bin_0_[18,21)",
+      "estimate": 0.05629941399528886,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "dimensionless",
+      "sample_size": 5
+    },
+    {
+      "name": "ellipticity_by_magnitude_bin_1_[21,22.6)",
+      "estimate": 0.07102480984062347,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "dimensionless",
+      "sample_size": 5
+    },
+    {
+      "name": "ellipticity_by_magnitude_bin_2_[22.6,23.9)",
+      "estimate": 0.07163949199101298,
+      "uncertainty_low": null,
+      "uncertainty_high": null,
+      "units": "dimensionless",
+      "sample_size": 5
+    }
+  ],
+  "provenance": {
+    "config_sha256": "abbc982cf3357acbc4d77bffce07da2f643f453e8ea2fa156507f829c2955fdb",
+    "git_commit": "LOCAL_UNCOMMITTED",
+    "package_version": "0.1.0",
+    "n_sources": 15,
+    "gaia_reference_size": 3
+  },
+  "warnings": [
+    "bin [18, 21) has 5 members, below minimum_sample_size=30",
+    "bin [21, 22.6) has 5 members, below minimum_sample_size=30",
+    "bin [22.6, 23.9) has 5 members, below minimum_sample_size=30",
+    "bin [18, 21) has 5 members, below minimum_sample_size=30",
+    "bin [21, 22.6) has 5 members, below minimum_sample_size=30",
+    "bin [22.6, 23.9) has 5 members, below minimum_sample_size=30",
+    "15 of 15 sources had no Gaia match within the match radius",
+    "only 0 Gaia matches; need >=3 to fit an affine alignment (see IMPLEMENTATION_PLAN.md)"
+  ]
+}

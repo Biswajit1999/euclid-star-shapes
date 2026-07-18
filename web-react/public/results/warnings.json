@@ -1,0 +1,10 @@
+[
+  "bin [18, 21) has 5 members, below minimum_sample_size=30",
+  "bin [21, 22.6) has 5 members, below minimum_sample_size=30",
+  "bin [22.6, 23.9) has 5 members, below minimum_sample_size=30",
+  "bin [18, 21) has 5 members, below minimum_sample_size=30",
+  "bin [21, 22.6) has 5 members, below minimum_sample_size=30",
+  "bin [22.6, 23.9) has 5 members, below minimum_sample_size=30",
+  "15 of 15 sources had no Gaia match within the match radius",
+  "only 0 Gaia matches; need >=3 to fit an affine alignment (see IMPLEMENTATION_PLAN.md)"
+]

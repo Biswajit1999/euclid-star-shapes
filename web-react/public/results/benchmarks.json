@@ -1,0 +1,24 @@
+[
+  {
+    "label": "demo",
+    "wall_time_seconds": 0.000733000022592023,
+    "peak_memory_mib": 0.0070629119873046875,
+    "peak_memory_method": "tracemalloc (Python-level allocations, not full process RSS)",
+    "dataset_size": 128,
+    "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "package_version": "0.1.0"
+  },
+  {
+    "label": "real_data",
+    "wall_time_seconds": 4.918933300010394,
+    "peak_memory_mib": 5.379833221435547,
+    "peak_memory_method": "tracemalloc (Python-level allocations, not full process RSS)",
+    "dataset_size": 15,
+    "python_version": "3.11.15 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:12:53) [MSC v.1942 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 141 Stepping 1, GenuineIntel",
+    "package_version": "0.1.0"
+  }
+]
