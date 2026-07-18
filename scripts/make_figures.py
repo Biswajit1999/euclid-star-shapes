@@ -23,6 +23,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+import scienceplots  # noqa: F401 - importing registers the SciencePlots styles
 
 from euclid_q1_vis_psf_astrometry_audit import __version__
 from euclid_q1_vis_psf_astrometry_audit.config import load_config
@@ -38,6 +39,8 @@ from euclid_q1_vis_psf_astrometry_audit.plotting import plot_demo
 from euclid_q1_vis_psf_astrometry_audit.provenance import get_git_commit, sha256_config
 from euclid_q1_vis_psf_astrometry_audit.psf_metrics import compare_gaussian_moffat
 from euclid_q1_vis_psf_astrometry_audit.synthetic import SyntheticPointSource, build_synthetic_vis_cutout
+
+plt.style.use(["science", "no-latex"])
 
 
 def _sidecar(path: Path, *, data_kind: str, sample_size: int, units: str, config_path: Path, extra: dict | None = None) -> None:
@@ -58,7 +61,7 @@ def _sidecar(path: Path, *, data_kind: str, sample_size: int, units: str, config
 def _save(fig, out_dir: Path, name: str) -> Path:
     svg_path = out_dir / f"{name}.svg"
     png_path = out_dir / f"{name}.png"
-    fig.savefig(svg_path)
+    fig.savefig(svg_path, dpi=180)
     fig.savefig(png_path, dpi=300)
     plt.close(fig)
     return png_path
@@ -69,32 +72,35 @@ def make_demo_figures(out_dir: Path, config_path: Path) -> None:
     data_kind = "synthetic_demo"
 
     rng = np.random.default_rng(20260713)
-    sources, fwhm_truth, ellip_truth, mag = [], [], [], []
+    sources: list[SyntheticPointSource] = []
+    magnitudes: list[float] = []
     for i in range(30):
         fwhm = 4.0 + rng.normal(0, 0.4)
         ellip = 0.12 + rng.uniform(0, 0.15)
         amp = rng.uniform(150, 900)
         sources.append(SyntheticPointSource(x=20.0, y=20.0, amplitude=amp, fwhm=fwhm, ellipticity=ellip, position_angle=rng.uniform(0, np.pi)))
-        fwhm_truth.append(fwhm)
-        ellip_truth.append(ellip)
-        mag.append(24.0 - 2.5 * np.log10(amp))
+        magnitudes.append(24.0 - 2.5 * np.log10(amp))
 
-    fitted_fwhm, fitted_ellip = [], []
+    fitted_fwhm_values: list[float] = []
+    fitted_ellip_values: list[float] = []
     example_hdul = None
     for i, src in enumerate(sources):
         hdul = build_synthetic_vis_cutout(seed=300 + i, sources=(src,))
         comparison = compare_gaussian_moffat(hdul[0].data)
         best = comparison.gaussian if comparison.better_model == "gaussian" else comparison.moffat
-        fitted_fwhm.append(best.fwhm)
-        fitted_ellip.append(best.ellipticity)
+        fitted_fwhm_values.append(best.fwhm)
+        fitted_ellip_values.append(best.ellipticity)
         if i == 0:
             example_hdul = hdul
-    fitted_fwhm, fitted_ellip, mag = np.array(fitted_fwhm), np.array(fitted_ellip), np.array(mag)
+    fitted_fwhm = np.asarray(fitted_fwhm_values)
+    fitted_ellip = np.asarray(fitted_ellip_values)
+    mag = np.asarray(magnitudes)
 
     # 1. VIS cutouts
+    assert example_hdul is not None
     fig, ax = plt.subplots(figsize=(5, 5))
     im = ax.imshow(example_hdul[0].data, origin="lower", cmap="viridis")
-    ax.set_title("Example VIS cutout — SYNTHETIC DEMO")
+    ax.set_title("Example VIS cutout - SYNTHETIC DEMO")
     ax.set_xlabel("x (pixels)")
     ax.set_ylabel("y (pixels)")
     fig.colorbar(im, ax=ax, shrink=0.8, label="Counts")
@@ -108,7 +114,7 @@ def make_demo_figures(out_dir: Path, config_path: Path) -> None:
     axes[0].set_ylabel("N sources")
     axes[1].hist(fitted_ellip, bins=10, color="tab:orange", edgecolor="white")
     axes[1].set_xlabel("Measured ellipticity")
-    fig.suptitle(f"FWHM / ellipticity distributions — SYNTHETIC DEMO (n={len(fitted_fwhm)})")
+    fig.suptitle(f"FWHM / ellipticity distributions - SYNTHETIC DEMO (n={len(fitted_fwhm)})")
     path = _save(fig, out_dir, "fig02_fwhm_ellipticity_distributions")
     _sidecar(path, data_kind=data_kind, sample_size=len(fitted_fwhm), units="pixels / dimensionless", config_path=config_path)
 
@@ -119,7 +125,7 @@ def make_demo_figures(out_dir: Path, config_path: Path) -> None:
     sc = ax.scatter(xs, ys, c=fitted_fwhm, cmap="viridis", s=60, edgecolor="black")
     ax.set_xlabel("Tile x (arbitrary units)")
     ax.set_ylabel("Tile y (arbitrary units)")
-    ax.set_title(f"Spatial FWHM map — SYNTHETIC DEMO (n={len(fitted_fwhm)})")
+    ax.set_title(f"Spatial FWHM map - SYNTHETIC DEMO (n={len(fitted_fwhm)})")
     fig.colorbar(sc, ax=ax, label="FWHM (pixels)")
     path = _save(fig, out_dir, "fig03_spatial_maps")
     _sidecar(path, data_kind=data_kind, sample_size=len(fitted_fwhm), units="pixels", config_path=config_path)
@@ -134,7 +140,7 @@ def make_demo_figures(out_dir: Path, config_path: Path) -> None:
     ax.axvline(0, color="black", lw=0.5)
     ax.set_xlabel("RA residual (arcsec)")
     ax.set_ylabel("Dec residual (arcsec)")
-    ax.set_title(f"Gaia astrometric residuals — SYNTHETIC DEMO (RMS={alignment.rms_residual_arcsec:.4f}\", n={len(fitted_fwhm)})")
+    ax.set_title(f"Gaia astrometric residuals - SYNTHETIC DEMO (RMS={alignment.rms_residual_arcsec:.4f}\", n={len(fitted_fwhm)})")
     path = _save(fig, out_dir, "fig04_gaia_residuals")
     _sidecar(path, data_kind=data_kind, sample_size=len(fitted_fwhm), units="arcsec", config_path=config_path)
 
@@ -146,7 +152,7 @@ def make_demo_figures(out_dir: Path, config_path: Path) -> None:
     axes[1].scatter(mag, fitted_ellip, color="tab:orange")
     axes[1].set_xlabel("VIS magnitude (synthetic)")
     axes[1].set_ylabel("Ellipticity")
-    fig.suptitle(f"FWHM / ellipticity vs magnitude — SYNTHETIC DEMO (n={len(fitted_fwhm)})")
+    fig.suptitle(f"FWHM / ellipticity vs magnitude - SYNTHETIC DEMO (n={len(fitted_fwhm)})")
     path = _save(fig, out_dir, "fig05_magnitude_trends")
     _sidecar(path, data_kind=data_kind, sample_size=len(fitted_fwhm), units="mag vs pixels/dimensionless", config_path=config_path)
 
@@ -165,7 +171,7 @@ def make_demo_figures(out_dir: Path, config_path: Path) -> None:
     ax.plot(truth_fwhms, recovered, "o", color="tab:red", label="recovered vs injected")
     ax.set_xlabel("Injected FWHM (pixels)")
     ax.set_ylabel("Recovered FWHM (pixels)")
-    ax.set_title(f"Injection-recovery validation — SYNTHETIC DEMO (n={len(truth_fwhms)})")
+    ax.set_title(f"Injection-recovery validation - SYNTHETIC DEMO (n={len(truth_fwhms)})")
     ax.legend()
     path = _save(fig, out_dir, "fig06_injection_recovery")
     _sidecar(path, data_kind=data_kind, sample_size=len(truth_fwhms), units="pixels", config_path=config_path)
