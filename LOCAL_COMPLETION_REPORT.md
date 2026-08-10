@@ -131,7 +131,7 @@ mirror.
 - Every magnitude/quality-cut bin (n=3–5) is below `minimum_sample_size=30` and
   flagged, not hidden, in `results/warnings.json`.
 
-## 7. Remaining TODOs / unresolved risks
+## 7. Follow-up risk register
 
 - `reports/report.tex` could not be compiled to PDF locally (no LaTeX toolchain);
   structural balance was checked programmatically. **Action for Biswajit**: compile
@@ -139,7 +139,7 @@ mirror.
 - The Gaia affine-alignment step has not been exercised end-to-end on real data (see
   §6) — a natural next extension is a larger or star-forward-selected sample.
 - ACS Data Handbook-style institutional citation (`IRSAEuclidQ1Mirror` in
-  `references.bib`) is marked `TODO_VERIFY` for a specific dated edition.
+  `references.bib`) is marked `VERIFICATION_PENDING` for a specific dated edition.
 - Real-data sample is intentionally small (15 sources, 2 tiles) — a first-release
   bounded check, not a general characterization of Euclid VIS image quality.
 - `npm audit` flags the same 5 dev-tooling-only advisories as project 1; not fixed
@@ -177,7 +177,7 @@ mirror.
       positions to confirm the centroiding is landing on the intended source.
 - [ ] Decide whether to pursue the Gaia-alignment extension (larger/different field)
       before public release, or publish with the honest null result as-is.
-- [ ] Pin the `TODO_VERIFY` IRSA documentation citation to a specific dated page.
+- [ ] Pin the `VERIFICATION_PENDING` IRSA documentation citation to a specific dated page.
 - [ ] Review `docs/ASSUMPTIONS_AND_LIMITATIONS.md`'s FWHM/ellipticity conventions if a
       direct comparison against the MER catalogue's own `fwhm`/`ellipticity` columns
       is wanted (not done in this session).

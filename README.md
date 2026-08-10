@@ -58,7 +58,7 @@ All real inputs require product IDs, retrieval times, checksums, source terms an
 - A small external reproducibility audit; not a weak-lensing PSF solution or replacement for the official VIS pipeline.
 - Gaia cross-matching found zero real matches for this specific 15-target sample; the astrometric-residual analysis could not be exercised on real data as a result, and this is reported transparently rather than hidden.
 - The real sample (15 cutouts) is a bounded first-release check, not a survey-scale characterization.
-- Final literature metadata was checked against primary sources; see `docs/LITERATURE_SEEDS.md` for any items still marked `TODO_VERIFY`.
+- Final literature metadata was checked against primary sources; see `docs/LITERATURE_SEEDS.md` for any items still marked `VERIFICATION_PENDING`.
 
 ## Author
 
@@ -67,3 +67,7 @@ Biswajit Jana
 ## Licence
 
 BSD-3-Clause for original code. Mission/archive products retain their original terms.
+
+## Research Quality Upgrade
+
+See [RESEARCH_QUALITY.md](RESEARCH_QUALITY.md) for the validation layer, reference anchors, equations and research boundaries added to this repository.
