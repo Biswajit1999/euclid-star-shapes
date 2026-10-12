@@ -1,0 +1,38 @@
+{
+  "data_kind": "real Euclid Q1 catalogue measurements",
+  "fwhm_bootstrap": {
+    "n": 15,
+    "median": 1.3640648126602173,
+    "ci95_low": 1.3331159353256226,
+    "ci95_high": 1.4286115169525146,
+    "draws": 20000,
+    "seed": 20261012
+  },
+  "ellipticity_bootstrap": {
+    "n": 15,
+    "median": 0.0308866985142231,
+    "ci95_low": 0.0168792232871055,
+    "ci95_high": 0.0587090291082859,
+    "draws": 20000,
+    "seed": 20261012
+  },
+  "magnitude_trends": {
+    "fwhm": {
+      "column": "fwhm_catalog",
+      "slope_per_magnitude": -0.026729899571602354,
+      "slope_ci95_low": -0.04065161639452261,
+      "slope_ci95_high": -0.008552997441886331,
+      "spearman_r": -0.7714285714285712,
+      "spearman_p": 0.0007568751073803471
+    },
+    "ellipticity": {
+      "column": "ellipticity_catalog",
+      "slope_per_magnitude": 0.0028023839582985766,
+      "slope_ci95_low": -0.006782176615581871,
+      "slope_ci95_high": 0.013507373865188042,
+      "spearman_r": 0.16785714285714282,
+      "spearman_p": 0.5498555542278019
+    }
+  },
+  "limitations": "Only 15 deterministically selected objects in two adjacent tiles are available. Bootstrap draws quantify resampling variability of this sample, not survey-scale uncertainty. Catalogue shapes are official measurements, not the repository's image-domain remeasurements or a weak-lensing PSF model."
+}
