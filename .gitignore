@@ -9,6 +9,10 @@ __pycache__/
 data/raw/*
 !data/raw/README.md
 /results/
+!/results/
+!/results/catalog-robustness/
+!/results/catalog-robustness/*
+*.egg-info/
 web-react/node_modules/
 web-react/dist/
 _PROJECT_LOG.md
