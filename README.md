@@ -18,6 +18,8 @@ On 15 real Euclid Q1 VIS cutouts, median point-source FWHM is 1.73 px (0.173″)
 
 A genuine finding, not a code bug: the Gaia affine-alignment step found zero matches on real data. Diagnosis showed the nearest real Gaia source to each of the 15 targets was 22–367″ away — far beyond any plausible astrometric offset — meaning these specific fields are not matched to Milky Way stars in the reference catalogue used, not that the matching code is broken (the same code is validated on synthetic data with a known exact match).
 
+The [catalogue-shape robustness audit](docs/CATALOG_ROBUSTNESS.md) adds bootstrap uncertainty, leave-one-object-out influence, robust magnitude trends and point-source-selection sensitivity for the 15 real catalogue records, while limiting inference to this bounded sample.
+
 ## Reproducing this result
 
 ```bash
